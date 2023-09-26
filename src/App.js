@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addTopping, removeTopping, isGlutenFree } from "./pizzaSlice";
 
 function App() {
   const pizza = useSelector((state) => state.pizza);
@@ -10,20 +11,21 @@ function App() {
 
   return (
     <>
-      <h1>pizza</h1>
+      <h1>Pizza</h1>
 
       {pizza.toppings.map((topping) => (
         <p key={topping}>{topping}</p>
       ))}
 
-      <button onClick={() => dispatch(addTopping("mushrooms"))}>
-        Add mushrooms
+
+      <button onClick={() => dispatch(addTopping("pepperoni"))}>
+        Add pepperoni
       </button>
       <button onClick={() => dispatch(removeTopping("pepperoni"))}>
         Remove pepperoni
       </button>
       <button onClick={() => dispatch(isGlutenFree())}>
-        {pizza.gluten ? "Remove gluten" : "Add gluten"}
+        {pizza.gluten ? "Glueten" : "Non-Gluten"}
       </button>
     </>
   );
